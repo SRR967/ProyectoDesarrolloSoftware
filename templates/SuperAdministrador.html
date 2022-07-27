@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba</title>
+    <link rel="stylesheet" href="../static/css/SuperAdministrador.css" type="text/css">
+    <script src="../static/js/SuperAdministrador.js"></script>
+</head>
+<body>
+    <header>
+
+        <h1>JW Marriott Marquis Dubai</h1>
+  
+        <button onclick="abrirFormulario1()">Eliminar</button>
+        <button onclick="abrirFormulario2();">Editar</button>
+        <button onclick="abrirFormulario3();">Ingresar</button>
+
+    </header>
+
+
+    <form action="" name="form1" style="display: none;">
+
+        <h2>Formulario Eliminacion</h2>
+        <p>Buscar: <input type="text" name="" id=""> </p>
+        <p> Nombre: <input type="text" name="" id="" disabled>
+            Apellidos: <input type="text" name="" id="" disabled>
+        </p>
+
+        <p>Tipo de identificacion: 
+            <select name="" id="" disabled>
+                <option value="Cedula de ciudadania">Cedula de ciudadania</option>
+            </select>
+        </p>
+        <p>Correo electronico: <input type="text" name="" id="" disabled></p>
+
+        <button>Eliminar administrador</button>
+        
+
+    </form>
+
+    <form action="" name="form2" style="display: none;">
+        <h2>Formulario Editar</h2>
+        <p>Buscar: <input type="text" name="" id=""></p>
+        <p> Nombre: <input type="text">
+            Apellidos: <input type="text" name="" id="">
+        </p>
+
+        <p>Tipo de identificacion: 
+            <select name="" id="">
+                <option value="Cedula de ciudadania">Cedula de ciudadania</option>
+            </select>
+        </p>
+        <p>Correo electronico: <input type="text" name="" id=""></p>
+
+        <button>Editar administrador</button>
+    </form>
+
+    <form action="" name="form3" style="display: none;">
+        <h2>Ingreso de administradores</h2>
+        <input type="text" name="" id="" placeholder="Nombre(s)">
+        <input type="text" name="" id="" placeholder="Apellidos"> <br>
+        <p>Tipo de identificacion:</p>
+        <select name="" id="">
+            <option value="Cedula de Ciudadania">Cedula de Ciudadania</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+            <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+            <option value="Pasaporte">Pasaporte</option>
+        </select>
+        
+        <input type="number" name="" id="" placeholder="Documento"> <br>
+        <input type="email" name="" id="" placeholder="Correo Electronico"> <br>
+        <input type="password" name="" id="" placeholder="Contraseña"> <br>
+    
+
+        <button>Agregar</button>
+    </form>
+   
+    
+</body>
+</html>
