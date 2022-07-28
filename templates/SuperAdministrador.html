@@ -25,15 +25,19 @@
     <h2>Formulario Eliminacion</h2>
     <p>Buscar:
          <input type="text" name="">
-         <input type="image" src="../static/images/lupa.png" width="20px">
+         <img class="lupa" src="../static/images/lupa.png" width="18px" onclick="buscarAdministrador();">
+         
     </p>
-    <p> Nombre: <input type="text" name="" disabled>
-        Apellidos: <input type="text" name="" disabled>
-    </p>
+
+    <p> Nombre: <input type="text" name="" disabled> </p>
+    <p> Apellidos: <input type="text" name="" disabled></p>
 
     <p>Tipo de identificacion:
         <select name="" disabled>
             <option value="Cedula de ciudadania">Cedula de ciudadania</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+            <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+            <option value="Pasaporte">Pasaporte</option>
         </select>
     </p>
     <p>Correo electronico: <input type="text" name="" disabled></p>
@@ -45,14 +49,20 @@
 
 <form action="" name="form2" style="display: none;">
     <h2>Formulario Editar</h2>
-    <p>Buscar: <input type="text" name=""></p>
-    <p> Nombre: <input type="text">
-        Apellidos: <input type="text" name="" id="">
+    <p>
+        Buscar: <input type="text" name="">
+        <img class="lupa" src="../static/images/lupa.png" width="18px" onclick="buscarAdministrador();">
     </p>
 
+    <p> Nombre: <input type="text"></p>
+    <p>Apellidos: <input type="text" name="" id=""></p> 
+    
     <p>Tipo de identificacion:
         <select name="">
             <option value="Cedula de ciudadania">Cedula de ciudadania</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+            <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+            <option value="Pasaporte">Pasaporte</option>
         </select>
     </p>
     <p>Correo electronico: <input type="text" name=""></p>

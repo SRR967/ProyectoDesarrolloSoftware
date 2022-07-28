@@ -10,3 +10,9 @@ header{
     text-align: center;  
 }
 
+.lupa{
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+}
+

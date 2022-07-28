@@ -45,3 +45,7 @@ function abrirFormulario3(){
         frm1.style.display="none";
     } 
 }
+
+function buscarAdministrador(){
+
+}
