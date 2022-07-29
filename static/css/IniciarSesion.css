@@ -5,7 +5,7 @@ h1{
 }
 
 form{
-    width: 350px;
+    width: 300px;
     margin: auto;
     padding: 20px;
     border-radius: 3px ;
@@ -19,7 +19,7 @@ form{
 
 }
 .boton{
-    width: 100%;
+    width: 89%;
     padding: 6px;
 }
 
@@ -32,6 +32,13 @@ form{
 p{
     text-align: center;
 }
+
+input.img_contrasenia{
+    position: relative;
+    top: 5px;
+    width: 20px;
+}
+
 
 .img_contrasenia{
     position: relative;
