@@ -1,26 +1,33 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
-    <head>
-        <title>Usuarios</title>
-    </head>
 
-    <body>
-        <h1>Agregar Usuario</h1>
-        <form action="" method="post">
-            <label for="POST-name">Nombres:</label><br>
-            <input id="POST-name" type="text" name="name" value="pepito Perez"><br>
-            <label for="POST-name">Cedula:</label><br>
-            <input id="POST-name" type="text" name="name" value="1223456"><br>
-            <label for="POST-name">Correo:</label><br>
-            <input id="POST-name" type="text" name="name" value="pepito.Perez@uninorte.edu.co"><br>
-            <label for="POST-name">Telefono:</label><br>
-            <input id="POST-name" type="text" name="name" value="12345"><br><br>
-            <label for="POST-name">Ciudad de residencia:</label><br>
-            <input id="POST-name" type="text" name="name" value="Cali"><br><br>
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    {% block contenido %}
+    <form action="/editar_user/{{ datos[0][0] }}" method="post">
+      {{form.nombre.label}} {{form.nombre(value=datos[0][1])}}
+      <br/>
+      {{form.cedula.label}} {{form.cedula(value=datos[0][2])}}
+      <br/>
+      {{form.correo.label}} {{form.correo(value=datos[0][3])}}
+      <br/>
+      {{form.telefono.label}} {{form.telefono(value=datos[0][4])}}
+      <br/>
+      {{form.ciudad.label}} {{form.ciudad(value=datos[0][5])}}
+      <br/>
+      {{form.enviar}} {{form.hidden_tag()}}
+    </form>
+    {% endblock %}
 
-            <input type="submit" value="Guardar">
-          </form><br><br>
-
-          <input type="button" onclick="location.href='index_user.html';" value="volver" />
-    </body>
+<input type="button" onclick="location.href='/index_user'" value="volver"/>
+</body>
 </html>

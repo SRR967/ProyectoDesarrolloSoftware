@@ -1,14 +1,23 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
-    <head>
-        <title>Administrador</title>
-    </head>
 
-    <body>
-        <h1>Administrar</h1><br>
-        <input type="button" onclick="location.href='index_user.html';" value="Administrar Usuarios" />
-        <input type="button" onclick="location.href='index_habitacion.html';" value="Administrar Habitaciones" />
-    
-    
-    </body>
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+
+<body>
+    <h1>{{ titulo }}</h1>
+    <input type="button" onclick="location.href='/'" value="Inicio"/>
+    <input type="button" onclick="location.href='/index_user'" value="Administrar Usuarios"/>
+    <input type="button" onclick="location.href='/index_habitacion'" value="Administrar Habitaciones"/>
+</body>
+
+</html>
+
 </html>

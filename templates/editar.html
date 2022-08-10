@@ -1,24 +1,31 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
-    <head>
-        <title>Habitaciones</title>
-    </head>
 
-    <body>
-        <h1>Modificar Habitacion</h1>
-        <form action="" method="post">
-            <label for="POST-name">Nombre:</label><br>
-            <input id="POST-name" type="text" name="name" value="Habitacion A"><br>
-            <label for="POST-name">Descripcion:</label><br>
-            <input id="POST-name" type="text" name="name" value="Habitacion A"><br>
-            <label for="POST-name">Capacidad:</label><br>
-            <input id="POST-name" type="text" name="name" value="2 huespedes"><br>
-            <label for="POST-name">Precio:</label><br>
-            <input id="POST-name" type="text" name="name" value="$$$ la noche"><br><br>
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    {% block contenido %}
+    <form action="/editar_hab/{{datos[0][0]}}"  enctype="multipart/form-data" method="post">
+      {{form.nombre.label}} {{form.nombre(value=datos[0][1])}}
+      <br/>
+      {{form.descripcion.label}} {{form.descripcion(value=datos[0][2])}}
+      <br/>
+      {{form.capacidad.label}} {{form.capacidad(value=datos[0][3])}}
+      <br/>
+      {{form.precio.label}} {{form.precio(value=datos[0][4])}}
+      <br/>
+      {{form.enviar}} {{form.hidden_tag()}}
+    </form>
+    {% endblock %}
 
-            <input type="submit" value="Modificar">
-          </form><br><br>
-
-          <input type="button" onclick="location.href='index_habitacion.html';" value="volver" />
-    </body>
+<input type="button" onclick="location.href='/index_habitacion'" value="volver"/>
+</body>
 </html>
