@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
+<<<<<<< HEAD
 <head>
     <title>Usuarios</title>
 </head>
@@ -23,5 +25,35 @@
 <br><br>
 
 <input type="button" onclick="location.href='index_user.html';" value="volver"/>
+=======
+
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    {% block contenido %}
+    <form action="/editar_user/{{ datos[0][0] }}" method="post">
+      {{form.nombre.label}} {{form.nombre(value=datos[0][1])}}
+      <br/>
+      {{form.cedula.label}} {{form.cedula(value=datos[0][2])}}
+      <br/>
+      {{form.correo.label}} {{form.correo(value=datos[0][3])}}
+      <br/>
+      {{form.telefono.label}} {{form.telefono(value=datos[0][4])}}
+      <br/>
+      {{form.ciudad.label}} {{form.ciudad(value=datos[0][5])}}
+      <br/>
+      {{form.enviar}} {{form.hidden_tag()}}
+    </form>
+    {% endblock %}
+
+<input type="button" onclick="location.href='/index_user'" value="volver"/>
+>>>>>>> 3a3ce536112cbf74a46dd2a1267a9401e1b183ce
 </body>
 </html>

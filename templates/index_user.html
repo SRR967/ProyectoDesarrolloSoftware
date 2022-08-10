@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
+<<<<<<< HEAD
 <head>
     <title>Usuarios</title>
 </head>
@@ -35,5 +37,56 @@
 </table>
 <br><br>
 <input type="button" onclick="location.href='index.html';" value="volver"/>
+=======
+
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+<body>
+<h1>{{ titulo }}</h1>
+<input type="button" onclick="location.href='/agregar_user'" value="Agregar usuario"/>
+<input type="button" onclick="location.href='/'" value="Volver"/>
+{% block contenido %}
+<table id="tabla">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>CEDULA</th>
+            <th>CORREO</th>
+            <th>TELEFONO</th>
+            <th>CIUDAD RESIDENCIA</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for user in t_usuarios %}
+            <tr>
+                <td>{% print (user[0]) %}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
+                <td><input type="button" onclick="location.href='/editar_user/{{ user[0] }}'" value="Modificar"/></td>
+                <td><input type="button" onclick="location.href='/eliminar_user/{{ user[0] }}'" value="Eliminar"/></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr />
+    {% with mensajes = get_flashed_messages() %} {% if mensajes %}
+    <ul>
+        {% for mensaje in mensajes %}
+        <li>{{ mensaje }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} 
+{% endblock %}
+>>>>>>> 3a3ce536112cbf74a46dd2a1267a9401e1b183ce
 </body>
 </html>

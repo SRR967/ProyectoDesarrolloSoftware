@@ -1,24 +1,33 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
-    <head>
-        <title>Habitaciones</title>
-    </head>
 
-    <body>
-        <h1>Agregar Habitacion</h1>
-        <form action="" method="post">
-            <label for="POST-name">Nombre:</label><br>
-            <input id="POST-name" type="text" name="name"><br>
-            <label for="POST-name">Descripcion:</label><br>
-            <input id="POST-name" type="text" name="name"><br>
-            <label for="POST-name">Capacidad:</label><br>
-            <input id="POST-name" type="text" name="name"><br>
-            <label for="POST-name">Precio:</label><br>
-            <input id="POST-name" type="text" name="name"><br><br>
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    {% block contenido %}
+    <form action="/agregar_hab"  enctype="multipart/form-data" method="post">
+      {{form.nombre.label}} {{form.nombre}}
+      <br/>
+      {{form.descripcion.label}} {{form.descripcion}}
+      <br/>
+      {{form.capacidad.label}} {{form.capacidad}}
+      <br/>
+      {{form.precio.label}} {{form.precio}}
+      <br/>
+      {{form.foto.label}} {{form.foto}}
+      <br/>
+      {{form.enviar}} {{form.hidden_tag()}}
+    </form>
+    {% endblock %}
 
-            <input type="submit" value="Guardar">
-          </form><br><br>
-
-          <input type="button" onclick="location.href='index_habitacion.html';" value="volver" />
-    </body>
+<input type="button" onclick="location.href='/index_habitacion'" value="volver"/>
+</body>
 </html>
