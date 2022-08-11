@@ -8,6 +8,16 @@ def sql_connection():
     except Error:
         print(Error)
 
+def sql_select_admins():
+    #strsql= ('INSERT INTO producto (id, nombre, precio, existencia) VALUES (?,?,?,?)',(id,nombre, precio, cantidad))
+    strsql= ('SELECT * FROM Administradores')
+    con= sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    administradores = cursor_Obj.fetchall()
+    con.close()
+    return administradores
+
 def sql_select_usuarios():
     strsql="SELECT * FROM Usuarios;"
     print(strsql)

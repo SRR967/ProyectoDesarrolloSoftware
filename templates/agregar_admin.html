@@ -13,16 +13,16 @@
 <body>
     <h1>{{ titulo }}</h1>
     {% block contenido %}
-    <form action="/editar_user/{{ datos[0][0] }}" method="post">
-      {{form.nombre.label}} {{form.nombre(value=datos[0][1])}}
+    <form action="/agregar_admin" method="post">
+      {{form.nombre.label}} {{form.nombre}}
       <br/>
-      {{form.cedula.label}} {{form.cedula(value=datos[0][2])}}
+      {{form.cedula.label}} {{form.cedula}}
       <br/>
-      {{form.correo.label}} {{form.correo(value=datos[0][3])}}
+      {{form.correo.label}} {{form.correo}}
       <br/>
-      {{form.telefono.label}} {{form.telefono(value=datos[0][4])}}
+      {{form.telefono.label}} {{form.telefono}}
       <br/>
-      {{form.ciudad.label}} {{form.ciudad(value=datos[0][5])}}
+      {{form.ciudad.label}} {{form.ciudad}}
       <br/>
       {{form.enviar}} {{form.hidden_tag()}}
     </form>

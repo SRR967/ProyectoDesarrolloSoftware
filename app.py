@@ -1,6 +1,6 @@
 from flask import request, Flask,flash, render_template, jsonify, url_for,current_app
 import database as bd
-from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion
+from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion, form_crear_administrador
 from settings.config import configuracion
 import os
 from werkzeug.utils import secure_filename
@@ -11,6 +11,16 @@ app = Flask(__name__)
 app.config.from_object(configuracion)
 app.config['UPLOAD_FOLDER'] = './static/images'
 
+
+#Vista de los superAdministradores
+@app.route('/super_administrador')
+def super_administrador():
+    lista_Administradores= bd.sql_select_admins()
+    flash=("Lista de administradores:")
+    return render_template('superAdministrador.html',t_administradores=lista_Administradores,titulo= "Super administrador")
+
+
+#Vista de los administradores
 @app.route('/')
 def api():
     return render_template('index.html',titulo="Administrar")

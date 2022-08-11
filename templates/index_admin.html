@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<html>
+
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+<body>
+<h1>{{ titulo }}</h1>
+<input type="button" onclick="location.href='/agregar_admin'" value="Agregar administrador"/>
+<input type="button" onclick="location.href='/'" value="Volver"/>
+{% block contenido %}
+<table id="tabla">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>CEDULA</th>
+            <th>CORREO</th>
+            <th>TELEFONO</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for user in t_administradores %}
+            <tr>
+                <td>{% print (user[0]) %}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td><input type="button" onclick="location.href='/editar_admin/{{ user[0] }}'" value="Modificar"/></td>
+                <td><input type="button" onclick="location.href='/eliminar_admin/{{ user[0] }}'" value="Eliminar"/></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr />
+{% endblock %}
+</body>
+</html>
