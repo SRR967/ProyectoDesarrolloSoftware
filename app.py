@@ -4,6 +4,7 @@ from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion
 from settings.config import configuracion
 import os
 from werkzeug.utils import secure_filename
+import pickle
 
 
 
@@ -13,7 +14,25 @@ app.config['UPLOAD_FOLDER'] = './static/images'
 
 @app.route('/')
 def api():
-    return render_template('index.html',titulo="Administrar")
+    return render_template("IniciarSesion.html")
+
+@app.route('/form_login',methods=['POST','GET'])
+def login():
+    name1=request.form['username']
+    pwd=request.form['password']
+    database=bd.sql_login_usuarios(name1)
+    if int(len(database))!=1 or name1 != str(database[0][0]):
+        return render_template('IniciarSesion.html',info='Usuario No existe')
+    else:
+        if str(database[0][1])!=pwd:
+            return render_template('IniciarSesion.html',info='Contraseña Incorrecta')
+        else:
+	        return render_template('index.html',name=name1)
+
+
+#@app.route('/')
+#def api():
+#    return render_template('index.html',titulo="Administrar")
 
 @app.route('/index_user')
 def index_user():
