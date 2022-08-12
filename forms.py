@@ -47,4 +47,20 @@ class form_editar_admin(FlaskForm):
     correo = StringField('Correo', validators=[DataRequired()])
     telefono = StringField('Telefono', validators=[DataRequired()])
     ciudad = StringField('Ciudad', validators=[DataRequired()])
-    enviar = SubmitField('Editar Usuario')
+    enviar = SubmitField('Editar administrador')
+
+class form_crear_superAdmin(FlaskForm):
+    nombre = StringField('Nombre', validators=[DataRequired()])
+    cedula= StringField('Cedula', validators=[DataRequired()])
+    correo= EmailField('Correo', validators=[DataRequired()])
+    telefono= StringField('Telefono', validators=[DataRequired()])
+    ciudad = StringField('Ciudad', validators=[DataRequired()])
+    enviar= SubmitField('Crear super administrador')
+
+class form_editar_superAdmin(FlaskForm):
+    nombre = StringField('Nombre', validators=[DataRequired()])
+    cedula = StringField('Cedula', validators=[DataRequired()])
+    correo = StringField('Correo', validators=[DataRequired()])
+    telefono = StringField('Telefono', validators=[DataRequired()])
+    ciudad = StringField('Ciudad', validators=[DataRequired()])
+    enviar = SubmitField('Editar super administrador')

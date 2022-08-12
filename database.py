@@ -28,7 +28,7 @@ def sql_buscar_admin(id):
     return administradores
 
 def sql_insert_admin(nombre,cedula,correo,telefono,ciudad):
-    strsql=('INSERT INTO Administradores (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES (?,?,?,?)',(nombre, cedula, correo, telefono, ciudad,cedula))
+    strsql="INSERT INTO Administradores (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"');"
     con = sql_connection()
     cursor_Obj = con.cursor()
     cursor_Obj.execute(strsql)
@@ -51,6 +51,7 @@ def sql_delete_admin(id):
     con.commit()
     con.close()
 
+#----------------------------------------------------------------
 
 def sql_select_superAdmin():
     strsql= ('SELECT * FROM SuperAdministradores')
@@ -61,9 +62,40 @@ def sql_select_superAdmin():
     con.close()
     return administradores
 
+def sql_insert_superAdmin(nombre,cedula,correo,telefono,ciudad):
+    strsql="INSERT INTO SuperAdministradores (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"');"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
 
+def sql_buscar_superAdmin(id):
+    strsql="SELECT * FROM SuperAdministradores WHERE id="+id
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    superAdministradores = cursor_Obj.fetchall()
+    con.close()
+    return superAdministradores
 
+def sql_update_superAdmin(id,nombre,cedula,correo,telefono,ciudad):
+    strsql="UPDATE SuperAdministradores SET nombre = '"+nombre+"', cedula = '"+cedula+"', correo = '"+correo+"', telefono = '"+telefono+"', ciudad = '"+ciudad+"' WHERE id = "+id+";"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
 
+def sql_delete_superAdmin(id):
+    strsql="DELETE FROM SuperAdministradores WHERE id = "+id+";"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+#----------------------------------------------------------------
 
 def sql_select_usuarios():
     strsql="SELECT * FROM Usuarios;"
@@ -121,6 +153,8 @@ def sql_delete_usuarios(id):
     cursor_Obj.execute(strsql)
     con.commit()
     con.close()
+
+#----------------------------------------------------------------
 
 def sql_select_habitaciones():
     strsql="SELECT * FROM Habitaciones;"

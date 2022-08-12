@@ -1,6 +1,6 @@
 from flask import request, Flask,flash, render_template, jsonify, url_for,current_app
 import database as bd
-from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion,form_crear_administrador, form_editar_admin
+from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion,form_crear_administrador, form_editar_admin,form_crear_superAdmin,form_editar_superAdmin
 from settings.config import configuracion
 import os
 from werkzeug.utils import secure_filename
@@ -24,7 +24,49 @@ def index_superAdmin():
     flash=("Lista de Super Administradores")
     return render_template('index_superAdmin.html',t_superAdmin= lista_superAdministradores)
 
+@app.route('/agregar_superAdmin',methods=['GET', 'POST'])
+def agregar_superAdmin():
+    if request.method == 'GET':
+        form = form_crear_superAdmin()
+        return render_template('agregar_superAdmin.html',form=form,titulo="Registrar nuevo  super administrador")
+    if request.method == 'POST':
+        nombre = request.form["nombre"]
+        cedula = request.form["cedula"]
+        correo= request.form["correo"]
+        telefono= request.form["telefono"]
+        ciudad= request.form["ciudad"]
+        bd.sql_insert_superAdmin(nombre,cedula,correo,telefono,ciudad)
+        flash(f'Super Administrardor {nombre} registrado con exito!')
+        lista_superAdmin = bd.sql_select_superAdmin()
+        return render_template('index_superAdmin.html',t_superAdmin=lista_superAdmin,titulo="Registro super Administradores")
 
+
+@app.route('/editar_superAdmin/<string:id>',methods=['GET', 'POST'])
+def editar_superAdmin(id):
+    if request.method == 'GET':
+        form = form_editar_superAdmin()
+        admin = bd.sql_buscar_superAdmin(id)
+        return render_template('editar_superAdmin.html',datos=admin,form=form,titulo="Editar super administrador "+id)
+    if request.method == 'POST':
+        nombre = request.form["nombre"]
+        cedula = request.form["cedula"]
+        correo= request.form["correo"]
+        telefono= request.form["telefono"]
+        ciudad= request.form["ciudad"]
+        bd.sql_update_superAdmin(id,nombre,cedula,correo,telefono,ciudad)
+        flash(f'Super Administrador {nombre} modificado con exito!')
+        lista_Admin = bd.sql_select_superAdmin()
+        return render_template('index_superAdmin.html',t_superAdmin=lista_Admin,titulo="Super Administradores")
+
+@app.route('/eliminar_superAdmin/<string:id>',methods=['GET'])
+def eliminar_superAdmin(id):
+    bd.sql_delete_superAdmin(id)
+    flash(f'el super Administrador {id} fue eliminado con exito!')
+    lista_admins = bd.sql_select_superAdmin()
+    return render_template('index_superAdmin.html',t_superAdmin=lista_admins,titulo="Super Administradores")
+
+
+#----------------------------------------------------------------
 @app.route('/index_admin')
 def index_admin():
     lista_Administradores= bd.sql_select_admins()
@@ -44,7 +86,7 @@ def editar_admin(id):
         telefono= request.form["telefono"]
         ciudad= request.form["ciudad"]
         bd.sql_update_admin(id,nombre,cedula,correo,telefono,ciudad)
-        flash(f'Administrar {nombre} modificado con exito!')
+        flash(f'Administrador {nombre} modificado con exito!')
         lista_Admin = bd.sql_select_admins()
         return render_template('index_admin.html',t_administradores=lista_Admin,titulo="Administradores")
 
@@ -62,17 +104,17 @@ def agregar_admin():
         bd.sql_insert_admin(nombre,cedula,correo,telefono,ciudad)
         flash(f'Administrardor {nombre} registrado con exito!')
         lista_Admin = bd.sql_select_admins()
-        return render_template('index_admin.html',t_usuarios=lista_Admin,titulo="Registro administradores")
+        return render_template('index_admin.html',t_administradores=lista_Admin,titulo="Registro administradores")
 
 @app.route('/eliminar_admin/<string:id>',methods=['GET'])
 def eliminar_admin(id):
     bd.sql_delete_admin(id)
     flash(f'el Administrador {id} fue eliminado con exito!')
     lista_admins = bd.sql_select_usuarios()
-    return render_template('index_admin.html',t_usuarios=lista_admins,titulo="Administradores")
+    return render_template('index_admin.html',t_administradores=lista_admins,titulo="Administradores")
 
 
-
+#----------------------------------------------------------------
 
 @app.route('/registrarse')
 def registrarse():
