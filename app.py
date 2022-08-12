@@ -18,6 +18,12 @@ app.config['UPLOAD_FOLDER'] = './static/images'
 def super_administrador():
     return render_template('SuperAdministrador.html',titulo= "Super administrador")
 
+@app.route('/index_superAdmin')
+def index_superAdmin():
+    lista_superAdministradores= bd.sql_select_superAdmin()
+    flash=("Lista de Super Administradores")
+    return render_template('index_superAdmin.html',t_superAdmin= lista_superAdministradores)
+
 
 @app.route('/index_admin')
 def index_admin():

@@ -52,6 +52,18 @@ def sql_delete_admin(id):
     con.close()
 
 
+def sql_select_superAdmin():
+    strsql= ('SELECT * FROM SuperAdministradores')
+    con= sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    administradores = cursor_Obj.fetchall()
+    con.close()
+    return administradores
+
+
+
+
 
 def sql_select_usuarios():
     strsql="SELECT * FROM Usuarios;"
