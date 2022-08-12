@@ -28,6 +28,16 @@ def sql_select_usuarios():
     con.close()
     return usuarios
 
+def sql_login_usuarios(user):
+    strsql="SELECT correo,contrasena FROM Usuarios WHERE correo='"+user+"'"
+    print(strsql)
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    usuarios = cursor_Obj.fetchall()
+    con.close()
+    return usuarios   
+
 def sql_buscar_usuarios(id):
     strsql="SELECT * FROM Usuarios WHERE id="+id
     print(strsql)
@@ -39,7 +49,7 @@ def sql_buscar_usuarios(id):
     return usuarios
 
 def sql_insert_usuarios(nombre,cedula,correo,telefono,ciudad):
-    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"');"
+    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"');"
     print(strsql)
     con = sql_connection()
     cursor_Obj = con.cursor()
