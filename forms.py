@@ -46,4 +46,5 @@ class form_editar_admin(FlaskForm):
     cedula = StringField('Cedula', validators=[DataRequired()])
     correo = StringField('Correo', validators=[DataRequired()])
     telefono = StringField('Telefono', validators=[DataRequired()])
+    ciudad = StringField('Ciudad', validators=[DataRequired()])
     enviar = SubmitField('Editar Usuario')

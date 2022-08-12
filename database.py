@@ -29,17 +29,22 @@ def sql_buscar_admin(id):
 
 def sql_insert_admin(nombre,cedula,correo,telefono,ciudad):
     strsql=('INSERT INTO Administradores (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES (?,?,?,?)',(nombre, cedula, correo, telefono, ciudad,cedula))
-    
-    strsql="INSERT INTO Administradores (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"');"
     con = sql_connection()
     cursor_Obj = con.cursor()
     cursor_Obj.execute(strsql)
     con.commit()
     con.close()
 
-def sql_update_admin(id,nombre,cedula,correo,telefono,):
-    strsql="UPDATE Administradores SET nombre = '"+nombre+"', cedula = '"+cedula+"', correo = '"+correo+"', telefono = '"+telefono+"' WHERE id = "+id+";"
-    print(strsql)
+def sql_update_admin(id,nombre,cedula,correo,telefono,ciudad):
+    strsql="UPDATE Administradores SET nombre = '"+nombre+"', cedula = '"+cedula+"', correo = '"+correo+"', telefono = '"+telefono+"', ciudad = '"+ciudad+"' WHERE id = "+id+";"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+def sql_delete_admin(id):
+    strsql="DELETE FROM Administradores WHERE id = "+id+";"
     con = sql_connection()
     cursor_Obj = con.cursor()
     cursor_Obj.execute(strsql)

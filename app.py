@@ -26,7 +26,7 @@ def index_admin():
     return render_template('index_admin.html', t_administradores= lista_Administradores)
 
 @app.route('/editar_admin/<string:id>',methods=['GET', 'POST'])
-def editar_admin():
+def editar_admin(id):
     if request.method == 'GET':
         form = form_editar_admin()
         admin = bd.sql_buscar_admin(id)
@@ -36,11 +36,11 @@ def editar_admin():
         cedula = request.form["cedula"]
         correo= request.form["correo"]
         telefono= request.form["telefono"]
-        #ciudad= request.form["ciudad"]
-        bd.sql_update_admin(id,nombre,cedula,correo,telefono,)
+        ciudad= request.form["ciudad"]
+        bd.sql_update_admin(id,nombre,cedula,correo,telefono,ciudad)
         flash(f'Administrar {nombre} modificado con exito!')
-        lista_Admin = bd.sql_select_usuarios()
-        return render_template('index_admin.html',t_administradores=lista_Admin,titulo="Usuarios")
+        lista_Admin = bd.sql_select_admins()
+        return render_template('index_admin.html',t_administradores=lista_Admin,titulo="Administradores")
 
 @app.route('/agregar_admin',methods=['GET', 'POST'])
 def agregar_admin():
@@ -57,6 +57,13 @@ def agregar_admin():
         flash(f'Administrardor {nombre} registrado con exito!')
         lista_Admin = bd.sql_select_admins()
         return render_template('index_admin.html',t_usuarios=lista_Admin,titulo="Registro administradores")
+
+@app.route('/eliminar_admin/<string:id>',methods=['GET'])
+def eliminar_admin(id):
+    bd.sql_delete_admin(id)
+    flash(f'el Administrador {id} fue eliminado con exito!')
+    lista_admins = bd.sql_select_usuarios()
+    return render_template('index_admin.html',t_usuarios=lista_admins,titulo="Administradores")
 
 
 
