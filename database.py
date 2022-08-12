@@ -18,6 +18,36 @@ def sql_select_admins():
     con.close()
     return administradores
 
+def sql_buscar_admin(id):
+    strsql="SELECT * FROM Administradores WHERE id="+id
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    administradores = cursor_Obj.fetchall()
+    con.close()
+    return administradores
+
+def sql_insert_admin(nombre,cedula,correo,telefono,ciudad):
+    strsql=('INSERT INTO Administradores (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES (?,?,?,?)',(nombre, cedula, correo, telefono, ciudad,cedula))
+    
+    strsql="INSERT INTO Administradores (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"');"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+def sql_update_admin(id,nombre,cedula,correo,telefono,):
+    strsql="UPDATE Administradores SET nombre = '"+nombre+"', cedula = '"+cedula+"', correo = '"+correo+"', telefono = '"+telefono+"' WHERE id = "+id+";"
+    print(strsql)
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+
+
 def sql_select_usuarios():
     strsql="SELECT * FROM Usuarios;"
     print(strsql)

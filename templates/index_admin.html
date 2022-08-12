@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<html>
+{% extends 'SuperAdministrador.html' %}
 
-<head>
-    {% if titulo %}
-    <title>{{ titulo }}</title>
-    {% else %}
-    <title>Proyecto</title>
-    {% endif %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
-</head>
-<body>
+{% block content %}
 <h1>{{ titulo }}</h1>
 <input type="button" onclick="location.href='/agregar_admin'" value="Agregar administrador"/>
-<input type="button" onclick="location.href='/'" value="Volver"/>
-{% block contenido %}
+
 <table id="tabla">
     <tbody>
         <tr>
@@ -23,6 +12,7 @@
             <th>CEDULA</th>
             <th>CORREO</th>
             <th>TELEFONO</th>
+            <th>CIUDAD RESIDENCIA</th>
             <th></th>
             <th></th>
         </tr>
@@ -33,6 +23,7 @@
                 <td>{{ user[2] }}</td>
                 <td>{{ user[3] }}</td>
                 <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
                 <td><input type="button" onclick="location.href='/editar_admin/{{ user[0] }}'" value="Modificar"/></td>
                 <td><input type="button" onclick="location.href='/eliminar_admin/{{ user[0] }}'" value="Eliminar"/></td>
             </tr>
@@ -40,6 +31,15 @@
     </tbody>
 </table>
 <hr />
+
+{% with mensajes = get_flashed_messages() %} {% if mensajes %}
+    <ul>
+        {% for mensaje in mensajes %}
+        <li>{{ mensaje }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} 
+
 {% endblock %}
-</body>
-</html>
+
+

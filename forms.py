@@ -38,4 +38,12 @@ class form_crear_administrador(FlaskForm):
     cedula= StringField('Cedula', validators=[DataRequired()])
     correo= EmailField('Correo', validators=[DataRequired()])
     telefono= StringField('Telefono', validators=[DataRequired()])
+    ciudad = StringField('Ciudad', validators=[DataRequired()])
     enviar= SubmitField('Crear administrador')
+
+class form_editar_admin(FlaskForm):
+    nombre = StringField('Nombre', validators=[DataRequired()])
+    cedula = StringField('Cedula', validators=[DataRequired()])
+    correo = StringField('Correo', validators=[DataRequired()])
+    telefono = StringField('Telefono', validators=[DataRequired()])
+    enviar = SubmitField('Editar Usuario')

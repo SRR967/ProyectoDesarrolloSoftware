@@ -2,19 +2,17 @@
 <html lang="en">
 
 <head>
-        {% if titulo %}
-        <title>{{ titulo }}</title>
-        {% else %}
-        <title>Proyecto</title>
-        {% endif %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
-    </head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
     
 <body>
     
         <h1>JW Marriott Marquis Dubai</h1>
-
-        
   
         <input type="button" onclick="location.href='/index_admin'" value="Administrar administradores">
         <button onclick="location.href='/index_superAdmin'">Administar super administradores</button>
@@ -22,8 +20,13 @@
         <input type="button" onclick="location.href='/index_habitacion'" value="Administrar Habitaciones"/>
         <button onclick="abrirFormulario3();">Ingresar</button>
 
-    
+        <hr>
 
+        {% block content %}
+        {% endblock %}
+
+    
+<!-- 
 
     <form action="" name="form1" style="display: none;">
 
@@ -103,7 +106,7 @@
 
 
     <button>Agregar</button>
-</form>
+</form> -->
 
 
 </body>

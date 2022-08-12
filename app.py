@@ -1,6 +1,6 @@
 from flask import request, Flask,flash, render_template, jsonify, url_for,current_app
 import database as bd
-from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion, form_crear_administrador
+from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion,form_crear_administrador, form_editar_admin
 from settings.config import configuracion
 import os
 from werkzeug.utils import secure_filename
@@ -16,9 +16,54 @@ app.config['UPLOAD_FOLDER'] = './static/images'
 #Vista de los superAdministradores
 @app.route('/super_administrador')
 def super_administrador():
+    return render_template('SuperAdministrador.html',titulo= "Super administrador")
+
+
+@app.route('/index_admin')
+def index_admin():
     lista_Administradores= bd.sql_select_admins()
     flash=("Lista de administradores:")
-    return render_template('superAdministrador.html',t_administradores=lista_Administradores,titulo= "Super administrador")
+    return render_template('index_admin.html', t_administradores= lista_Administradores)
+
+@app.route('/editar_admin/<string:id>',methods=['GET', 'POST'])
+def editar_admin():
+    if request.method == 'GET':
+        form = form_editar_admin()
+        admin = bd.sql_buscar_admin(id)
+        return render_template('editar_admin.html',datos=admin,form=form,titulo="Editar administrador "+id)
+    if request.method == 'POST':
+        nombre = request.form["nombre"]
+        cedula = request.form["cedula"]
+        correo= request.form["correo"]
+        telefono= request.form["telefono"]
+        #ciudad= request.form["ciudad"]
+        bd.sql_update_admin(id,nombre,cedula,correo,telefono,)
+        flash(f'Administrar {nombre} modificado con exito!')
+        lista_Admin = bd.sql_select_usuarios()
+        return render_template('index_admin.html',t_administradores=lista_Admin,titulo="Usuarios")
+
+@app.route('/agregar_admin',methods=['GET', 'POST'])
+def agregar_admin():
+    if request.method == 'GET':
+        form = form_crear_administrador()
+        return render_template('agregar_admin.html',form=form,titulo="Registrar nuevo administrador")
+    if request.method == 'POST':
+        nombre = request.form["nombre"]
+        cedula = request.form["cedula"]
+        correo= request.form["correo"]
+        telefono= request.form["telefono"]
+        ciudad= request.form["ciudad"]
+        bd.sql_insert_admin(nombre,cedula,correo,telefono,ciudad)
+        flash(f'Administrardor {nombre} registrado con exito!')
+        lista_Admin = bd.sql_select_admins()
+        return render_template('index_admin.html',t_usuarios=lista_Admin,titulo="Registro administradores")
+
+
+
+
+@app.route('/registrarse')
+def registrarse():
+    return render_template('registrarse.html')
 
 
 #Vista de los administradores

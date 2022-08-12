@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<html>
+{% extends 'SuperAdministrador.html' %}
+  
+{% block content %}
 
-<head>
-    {% if titulo %}
-    <title>{{ titulo }}</title>
-    {% else %}
-    <title>Proyecto</title>
-    {% endif %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
-</head>
-<body>
-    <h1>{{ titulo }}</h1>
-    {% block contenido %}
-    <form action="/agregar_admin" method="post">
-      {{form.nombre.label}} {{form.nombre}}
+<h1>{{ titulo }}</h1>
+  <form action="/agregar_admin" method="post">
+    {{form.nombre.label}} {{form.nombre}}
       <br/>
       {{form.cedula.label}} {{form.cedula}}
       <br/>
@@ -25,9 +15,6 @@
       {{form.ciudad.label}} {{form.ciudad}}
       <br/>
       {{form.enviar}} {{form.hidden_tag()}}
-    </form>
-    {% endblock %}
+  </form>
+{% endblock %}
 
-<input type="button" onclick="location.href='/index_user'" value="volver"/>
-</body>
-</html>
