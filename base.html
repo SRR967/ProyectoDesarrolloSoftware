@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<html>
+
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Mi sitio</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+
+<body>
+    <h1>{{ titulo }}</h1>
+    <a href="/">Inicio</a>
+    <input type="button" onclick="location.href='index_user.html';" value="Administrar1 Usuarios"/>
+<input type="button" onclick="location.href='index_habitacion.html';" value="Administrar1 Habitaciones"/>
+    <a href="/nuevo">Nuevo Producto</a>
+    <a href="/productos">Listar productos</a>
+    <hr />
+    {% with mensajes = get_flashed_messages() %} {% if mensajes %}
+    <ul>
+        {% for mensaje in mensajes %}
+        <li>{{ mensaje }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} 
+    {% block contenido %} 
+    {% endblock %}
+    <p>Eso es todo</p>
+</body>
+
+</html>
+
+</html>

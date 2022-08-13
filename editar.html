@@ -1,0 +1,31 @@
+{% if perfil=='super' %}{% extends 'SuperAdministrador.html' %} {% endif %}
+{% if perfil !='super' %}
+<!DOCTYPE html>
+<html lang="es">
+<html>
+<head>
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+<body>
+<h1>{{ titulo }}</h1>
+<h5>Bienvenido {{ nombre }} <input type="button" onclick="location.href='/'" value="Cerrar Sesion"/></h5>
+<input type="button" onclick="location.href='/index_habitacion/{{ id_user }}'" value="Volver"/>
+{% endif %}
+
+{% block content %} 
+    <form action="/editar_hab/{{ id_user }}/{{datos[0][0]}}"  enctype="multipart/form-data" method="post">
+      {{form.nombre.label}} {{form.nombre(value=datos[0][1])}}
+      <br/>
+      {{form.descripcion.label}} {{form.descripcion(value=datos[0][2])}}
+      <br/>
+      {{form.capacidad.label}} {{form.capacidad(value=datos[0][3])}}
+      <br/>
+      {{form.precio.label}} {{form.precio(value=datos[0][4])}}
+      <br/>
+      {{form.enviar}} {{form.hidden_tag()}}
+    </form>
+    {% endblock %}
+
+</body>
+</html>

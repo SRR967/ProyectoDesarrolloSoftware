@@ -1,0 +1,26 @@
+{% extends 'Usuarios.html' %}
+{% block content %}
+
+<table id="tabla">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <th>HABITACION</th>
+            <th>FECHA ENTRADA</th>
+            <th>FECHA SALIDA</th>
+            <th>COMENTARIOS</th>
+        </tr>
+        {% for reserva in t_reservacion %}
+            <tr>
+                <td>{% print (reserva[0]) %}</td>
+                <td>{{ reserva[2] }}</td>
+                <td>{{ reserva[3] }}</td>
+                <td>{{ reserva[4] }}</td>
+                <td>{{ reserva[5] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr />
+
+{% endblock %}

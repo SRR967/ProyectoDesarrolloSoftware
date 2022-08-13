@@ -1,0 +1,18 @@
+{% extends 'SuperAdministrador.html' %}
+
+{% block content %}
+
+<form action="/editar_superAdmin/{{ datos[0][0] }}" method="post">
+    {{form.nombre.label}} {{form.nombre(value=datos[0][1])}}
+    <br/>
+    {{form.cedula.label}} {{form.cedula(value=datos[0][2])}}
+    <br/>
+    {{form.correo.label}} {{form.correo(value=datos[0][3])}}
+    <br/>
+    {{form.telefono.label}} {{form.telefono(value=datos[0][4])}}
+    <br/>
+    {{form.ciudad.label}} {{form.ciudad(value=datos[0][5])}}
+    <br/>
+    {{form.enviar}} {{form.hidden_tag()}}
+  </form>
+{% endblock %}
