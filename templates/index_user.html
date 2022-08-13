@@ -1,39 +1,54 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
-<head>
-    <title>Usuarios</title>
-</head>
 
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
 <body>
-<h1>Usuarios</h1>
-<input type="button" onclick="location.href='agregar_user.html';" value="Agregar usuario"/>
-<input type="button" onclick="location.href='editar_user.html';" value="Modificar Usuario"/>
-<input type="button" onclick="location.href='eliminar_user.html';" value="eliminar Usuario"/>
-<br><br>
-<table border="1">
-    <tr>
-        <td>NOMBRE</td>
-        <td>CEDULA</td>
-        <td>CORREO</td>
-        <td>TELEFONO</td>
-        <td>CIUDAD RESIDENCIA</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+<h1>{{ titulo }}</h1>
+<input type="button" onclick="location.href='/agregar_user'" value="Agregar usuario"/>
+<input type="button" onclick="location.href='/'" value="Volver"/>
+{% block contenido %}
+<table id="tabla">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>CEDULA</th>
+            <th>CORREO</th>
+            <th>TELEFONO</th>
+            <th>CIUDAD RESIDENCIA</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for user in t_usuarios %}
+            <tr>
+                <td>{% print (user[0]) %}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
+                <td><input type="button" onclick="location.href='/editar_user/{{ user[0] }}'" value="Modificar"/></td>
+                <td><input type="button" onclick="location.href='/eliminar_user/{{ user[0] }}'" value="Eliminar"/></td>
+            </tr>
+        {% endfor %}
+    </tbody>
 </table>
-<br><br>
-<input type="button" onclick="location.href='index.html';" value="volver"/>
+<hr />
+    {% with mensajes = get_flashed_messages() %} {% if mensajes %}
+    <ul>
+        {% for mensaje in mensajes %}
+        <li>{{ mensaje }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} 
+{% endblock %}
 </body>
 </html>

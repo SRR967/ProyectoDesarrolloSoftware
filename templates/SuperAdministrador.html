@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba</title>
-    <link rel="stylesheet" href="../static/css/SuperAdministrador.css" type="text/css">
-    <script src="../static/js/SuperAdministrador.js"></script>
-</head>
-<body>
-    <header>
 
+<head>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
+</head>
+    
+<body>
+    
         <h1>JW Marriott Marquis Dubai</h1>
   
-        <button onclick="abrirFormulario1()">Eliminar</button>
-        <button onclick="abrirFormulario2();">Editar</button>
-        <button onclick="abrirFormulario3();">Ingresar</button>
+        <input type="button" onclick="location.href='/index_admin'" value="Administrar administradores">
+        <button onclick="location.href='/index_superAdmin'">Administar super administradores</button>
+        <input type="button" onclick="location.href='/index_user'" value="Administrar Usuarios"/>
+        <input type="button" onclick="location.href='/index_habitacion'" value="Administrar Habitaciones"/>
 
-    </header>
+        <hr>
 
+        {% block content %}
+        {% endblock %}
+
+    
+<!-- 
 
     <form action="" name="form1" style="display: none;">
 
@@ -98,7 +105,7 @@
 
 
     <button>Agregar</button>
-</form>
+</form> -->
 
 
 </body>

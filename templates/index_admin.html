@@ -1,0 +1,45 @@
+{% extends 'SuperAdministrador.html' %}
+
+{% block content %}
+<h1>{{ titulo }}</h1>
+<input type="button" onclick="location.href='/agregar_admin'" value="Agregar administrador"/>
+
+<table id="tabla">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>CEDULA</th>
+            <th>CORREO</th>
+            <th>TELEFONO</th>
+            <th>CIUDAD RESIDENCIA</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for user in t_administradores %}
+            <tr>
+                <td>{% print (user[0]) %}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
+                <td><input type="button" onclick="location.href='/editar_admin/{{ user[0] }}'" value="Modificar"/></td>
+                <td><input type="button" onclick="location.href='/eliminar_admin/{{ user[0] }}'" value="Eliminar"/></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr />
+
+{% with mensajes = get_flashed_messages() %} {% if mensajes %}
+    <ul>
+        {% for mensaje in mensajes %}
+        <li>{{ mensaje }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} 
+
+{% endblock %}
+
+

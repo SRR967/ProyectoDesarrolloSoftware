@@ -11,23 +11,19 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
 </head>
 <body>
-    <h1>{{ titulo }}</h1>
+    <h1>{{ titulo }} {{id_user}} - {{id_hab}}</h1>
     {% block contenido %}
-    <form action="/agregar_user" method="post">
-      {{form.nombre.label}} {{form.nombre}}
+    <form action="/realizar_reserva/{{id_user}}/{{id_hab}}"  enctype="multipart/form-data" method="post">
+      {{form.fecha_entrada.label}} {{form.fecha_entrada}}
       <br/>
-      {{form.cedula.label}} {{form.cedula}}
+      {{form.fecha_salida.label}} {{form.fecha_salida}}
       <br/>
-      {{form.correo.label}} {{form.correo}}
-      <br/>
-      {{form.telefono.label}} {{form.telefono}}
-      <br/>
-      {{form.ciudad.label}} {{form.ciudad}}
+      {{form.comentarios.label}} {{form.comentarios}}
       <br/>
       {{form.enviar}} {{form.hidden_tag()}}
     </form>
     {% endblock %}
 
-<input type="button" onclick="location.href='/index_user'" value="volver"/>
+<input type="button" onclick="location.href='/index_habitacion'" value="volver"/>
 </body>
 </html>

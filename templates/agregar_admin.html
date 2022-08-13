@@ -1,0 +1,20 @@
+{% extends 'SuperAdministrador.html' %}
+  
+{% block content %}
+
+<h1>{{ titulo }}</h1>
+  <form action="/agregar_admin" method="post">
+    {{form.nombre.label}} {{form.nombre}}
+      <br/>
+      {{form.cedula.label}} {{form.cedula}}
+      <br/>
+      {{form.correo.label}} {{form.correo}}
+      <br/>
+      {{form.telefono.label}} {{form.telefono}}
+      <br/>
+      {{form.ciudad.label}} {{form.ciudad}}
+      <br/>
+      {{form.enviar}} {{form.hidden_tag()}}
+  </form>
+{% endblock %}
+
