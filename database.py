@@ -128,7 +128,8 @@ def sql_buscar_usuarios(id):
     return usuarios
 
 def sql_insert_usuarios(nombre,cedula,correo,telefono,ciudad):
-    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"');"
+    usuario= "usuario"
+    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena,perfil) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"','"+usuario+"');"
     print(strsql)
     con = sql_connection()
     cursor_Obj = con.cursor()

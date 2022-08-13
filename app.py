@@ -117,8 +117,19 @@ def eliminar_admin(id):
 #----------------------------------------------------------------
 
 @app.route('/registrarse')
+@app.route('/registrarse',methods=['GET', 'POST'])
 def registrarse():
-    return render_template('registrarse.html')
+    if request.method == 'GET':
+        form = form_crear_usuario()
+        return render_template('registrarse.html',form=form)
+    if request.method == 'POST':
+        nombre = request.form["nombre"]
+        cedula = request.form["cedula"]
+        correo= request.form["correo"]
+        telefono= request.form["telefono"]
+        ciudad= request.form["ciudad"]
+        bd.sql_insert_usuarios(nombre,cedula,correo,telefono,ciudad)
+        return render_template('IniciarSesion.html',titulo="Usuarios")
 
 
 #Vista de los administradores

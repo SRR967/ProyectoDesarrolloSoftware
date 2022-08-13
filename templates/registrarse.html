@@ -9,21 +9,21 @@
 </head>
 <body>
 
-<form action="">
-    <h2>Formulario de registro</h2>
-    <input class="datos" type="text" name="" placeholder="Nombre(s)">
-    <input class="datos" type="text" name="" placeholder="Apellidos"> <br>
-    <p>Tipo de identificacion:</p>
-    <select name="">
-        <option value="Cedula de Ciudadania">Cedula de Ciudadania</option>
-        <option value="Tarjeta de identidad">Tarjeta de identidad</option>
-        <option value="Cedula de extranjeria">Cedula de extranjeria</option>
-        <option value="Pasaporte">Pasaporte</option>
-    </select>
+<form action="/registrarse" method="post">
 
-    <input class="datos" type="number" name="" placeholder="Documento"> <br>
-    <input class="datos" type="email" name="" placeholder="Correo Electronico"> <br>
-    <input class="datos" type="password" name="" placeholder="Contraseña"> <br>
+    {{form.nombre.label}} {{form.nombre}}
+    <br/>
+    {{form.cedula.label}} {{form.cedula}}
+    <br/>
+    {{form.correo.label}} {{form.correo}}
+    <br/>
+    {{form.telefono.label}} {{form.telefono}}
+    <br/>
+    {{form.ciudad.label}} {{form.ciudad}}
+    <br/>
+    {{form.enviar}} {{form.hidden_tag()}}
+
+
     <p class="terminos">Estoy de acuerdo con <a href="#"> Terminos y condiciones</a></p>
     <input class="botones" type="submit" name="" value="Registrarse">
     <p class="terminos"><a href="#">¿Ya tengo cuenta?</a></p>
