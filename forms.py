@@ -64,3 +64,12 @@ class form_editar_superAdmin(FlaskForm):
     telefono = StringField('Telefono', validators=[DataRequired()])
     ciudad = StringField('Ciudad', validators=[DataRequired()])
     enviar = SubmitField('Editar super administrador')
+
+class form_reservacion(FlaskForm):
+    nombre = StringField('Nombre', validators=[DataRequired()])
+    cedula = StringField('Cedula', validators=[DataRequired()])
+    correo = StringField('Correo', validators=[DataRequired()])
+    telefono = StringField('Telefono', validators=[DataRequired()])
+    ciudad = StringField('Ciudad', validators=[DataRequired()])
+    habitacion = StringField('Habitacion', validators=[DataRequired()])
+    enviar = SubmitField('Editar super administrador')

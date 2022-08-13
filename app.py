@@ -1,6 +1,6 @@
 from flask import request, Flask,flash, render_template, jsonify, url_for,current_app
 import database as bd
-from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion,form_crear_administrador, form_editar_admin,form_crear_superAdmin,form_editar_superAdmin
+from forms import form_crear_usuario, form_editar_usuario, form_crear_habitacion, form_editar_habitacion,form_crear_administrador, form_editar_admin,form_crear_superAdmin,form_editar_superAdmin, form_reservacion
 from settings.config import configuracion
 import os
 from werkzeug.utils import secure_filename
@@ -237,5 +237,24 @@ def eliminar_habitacion(id):
     flash(f'la habitacion {id} fue eliminada con exito!')
     lista_Habitaciones = bd.sql_select_habitaciones()
     return render_template('index_habitacion.html',t_habitaciones=lista_Habitaciones,titulo="Habitaciones")
-    
+
+#----------------------------------------------------------------
+# Vista del usuario
+@app.route('/inicio')
+def inicio():   
+    return render_template('Usuarios.html',titulo="Inicio")
+
+@app.route('/habitaciones')
+def habitaciones():
+    lista_Habitaciones = bd.sql_select_habitaciones()
+    flash("Lista de Habitaciones")
+    return render_template('habitaciones.html',t_habitaciones=lista_Habitaciones,titulo="Habitaciones")
+
+@app.route('/reservacion')
+def reservacion():
+    lista_Reservaciones = bd.sql_select_reservaciones()
+    titulo="Lista de Reservaciones"
+    return render_template('reservacion.html', t_reservacion=lista_Reservaciones,titulo=titulo)
+
+
 app.run(debug=True)

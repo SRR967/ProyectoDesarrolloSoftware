@@ -1,0 +1,26 @@
+{% extends 'Usuarios.html' %}
+{% block content %}
+
+<h1>{{ titulo }}</h1>
+<div>
+    {% for hab in t_habitaciones %}
+        <table>
+            <tr>
+                <td><img src="../static/images/{{hab[5]}}" alt="" width="300px" height="300px"/></td>
+                <td>
+                    <h2>{{hab[1]}}</h2>
+                    <p><b>DESCRIPCION: </b>{{hab[2]}}</p>
+                    <p><b>CAPACIDAD: </b>{{hab[3]}}</p>
+                    <p><b>PRECIO: </b>{{hab[4]}}</p>
+                    <p><input type="button" onclick="location.href='/reservacion/{{hab[0]}}'" value="Reservar"></p>
+                </td>
+            </tr>
+        </table>
+    {% endfor %}
+    </div>
+    <br><br>
+{% endblock %}
+
+
+
+

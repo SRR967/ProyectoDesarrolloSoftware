@@ -203,3 +203,11 @@ def sql_delete_habitacion(id):
     con.commit()
     con.close()
 
+def sql_select_reservaciones():
+    strsql="SELECT * FROM Reservaciones;"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    reservacion = cursor_Obj.fetchall()
+    con.close()
+    return reservacion
