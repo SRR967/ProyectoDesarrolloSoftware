@@ -8,8 +8,97 @@ def sql_connection():
     except Error:
         print(Error)
 
+def sql_select_admins():
+    #strsql= ('INSERT INTO producto (id, nombre, precio, existencia) VALUES (?,?,?,?)',(id,nombre, precio, cantidad))
+    strsql= ('SELECT * FROM Usuarios WHERE perfil="admin"')
+    con= sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    administradores = cursor_Obj.fetchall()
+    con.close()
+    return administradores
+
+def sql_buscar_admin(id):
+    strsql="SELECT * FROM Usuarios WHERE perfil='admin' and id="+id
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    administradores = cursor_Obj.fetchall()
+    con.close()
+    return administradores
+
+def sql_insert_admin(nombre,cedula,correo,telefono,ciudad):
+    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena,perfil) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"','admin');"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+def sql_update_admin(id,nombre,cedula,correo,telefono,ciudad):
+    strsql="UPDATE Usuarios SET nombre = '"+nombre+"', cedula = '"+cedula+"', correo = '"+correo+"', telefono = '"+telefono+"', ciudad = '"+ciudad+"' WHERE  perfil='admin' and id = "+id+";"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+def sql_delete_admin(id):
+    strsql="DELETE FROM Usuarios WHERE  perfil='admin' and id = "+id+";"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+#----------------------------------------------------------------
+
+def sql_select_superAdmin():
+    strsql= ('SELECT * FROM Usuarios WHERE perfil="super"')
+    con= sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    administradores = cursor_Obj.fetchall()
+    con.close()
+    return administradores
+
+def sql_insert_superAdmin(nombre,cedula,correo,telefono,ciudad):
+    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena,perfil) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"','super');"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+def sql_buscar_superAdmin(id):
+    strsql="SELECT * FROM Usuarios WHERE perfil='super' and id="+id
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    superAdministradores = cursor_Obj.fetchall()
+    con.close()
+    return superAdministradores
+
+def sql_update_superAdmin(id,nombre,cedula,correo,telefono,ciudad):
+    strsql="UPDATE Usuarios SET nombre = '"+nombre+"', cedula = '"+cedula+"', correo = '"+correo+"', telefono = '"+telefono+"', ciudad = '"+ciudad+"'  WHERE perfil='super' and id = "+id+";"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+def sql_delete_superAdmin(id):
+    strsql="DELETE FROM Usuarios WHERE perfil='super' and  = "+id+";"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+#----------------------------------------------------------------
+
 def sql_select_usuarios():
-    strsql="SELECT * FROM Usuarios;"
+    strsql="SELECT * FROM Usuarios WHERE perfil='usuario';"
     print(strsql)
     con = sql_connection()
     cursor_Obj = con.cursor()
@@ -19,7 +108,7 @@ def sql_select_usuarios():
     return usuarios
 
 def sql_login_usuarios(user):
-    strsql="SELECT correo,contrasena FROM Usuarios WHERE correo='"+user+"'"
+    strsql="SELECT correo,contrasena,perfil,id,nombre FROM Usuarios WHERE correo='"+user+"'"
     print(strsql)
     con = sql_connection()
     cursor_Obj = con.cursor()
@@ -39,7 +128,7 @@ def sql_buscar_usuarios(id):
     return usuarios
 
 def sql_insert_usuarios(nombre,cedula,correo,telefono,ciudad):
-    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"');"
+    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena,perfil) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"','usuario');"
     print(strsql)
     con = sql_connection()
     cursor_Obj = con.cursor()
@@ -64,6 +153,8 @@ def sql_delete_usuarios(id):
     cursor_Obj.execute(strsql)
     con.commit()
     con.close()
+
+#----------------------------------------------------------------
 
 def sql_select_habitaciones():
     strsql="SELECT * FROM Habitaciones;"
@@ -112,3 +203,30 @@ def sql_delete_habitacion(id):
     con.commit()
     con.close()
 
+def sql_select_reservaciones():
+    strsql="SELECT * FROM Reservaciones;"
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    reservacion = cursor_Obj.fetchall()
+    con.close()
+    return reservacion
+
+def sql_reserva(id,id_hab,fecha_entrada,fecha_salida,comentarios):
+    strsql="INSERT INTO Reservas (id_user,id_habitacion,fecha_entrada,fecha_salida,comentarios) VALUES('"+id+"', '"+id_hab+"', '"+fecha_entrada+"', '"+fecha_salida+"', '"+comentarios+"');"
+    print(strsql)
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    con.commit()
+    con.close()
+
+def sql_buscar_reservas(id):
+    strsql="SELECT * FROM Reservas WHERE id_user="+id
+    print(strsql)
+    con = sql_connection()
+    cursor_Obj = con.cursor()
+    cursor_Obj.execute(strsql)
+    habitacion = cursor_Obj.fetchall()
+    con.close()
+    return habitacion
