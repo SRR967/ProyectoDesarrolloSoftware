@@ -13,9 +13,10 @@
 
 <body>
     <h1>{{ titulo }}</h1>
-    <input type="button" onclick="location.href='/'" value="Inicio"/>
-    <input type="button" onclick="location.href='/index_user'" value="Administrar Usuarios"/>
-    <input type="button" onclick="location.href='/index_habitacion'" value="Administrar Habitaciones"/>
+    <h5>Bienvenido {{ nombre }} <input type="button" onclick="location.href='/'" value="Cerrar Sesion"/></h5>
+
+    <input type="button" onclick="location.href='/index_user/{{ id_user }}'" value="Administrar Usuarios"/>
+    <input type="button" onclick="location.href='/index_habitacion/{{ id_user }}'" value="Administrar Habitaciones"/>
 </body>
 
 </html>

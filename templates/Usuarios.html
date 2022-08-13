@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Usuario</title>
-    <script src="../static/js/Usuarios.js"></script>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
 
 </head>
+
 <body>
-<script>
+    <h1>{{ titulo }}</h1>
+    <h5>Bienvenido {{ nombre }} <input type="button" onclick="location.href='/'" value="Cerrar Sesion"/></h5>
 
-</script>
-<input type="button" value="Ver habitaciones" onclick="mostrarPanelGestionarHabitaciones()"/>
-<input type="button" value="Ver hoteles" onclick="mostrarPanelHoteles()"/>
-<input type="button" value="Ver galeria" onclick="mostrarPanelDeGalerias()"/>
-<input type="button" value="Ver reservaciones" onclick="mostrarPanelReservaciones()"/>
+    <input type="button" value="Ver habitaciones" onclick="location.href='/habitaciones/{{id_user}}'"/>
+    <!--<input type="button" value="Ver galeria" onclick="location.href='/habitaciones/{{id_user}}'"/>-->
+    <input type="button" value="Ver reservaciones" onclick="location.href='/reservacion/{{id_user}}'"/>
+    <hr>
 
+    {% block content %}
+
+    {% endblock %}
+
+   
+
+
+<!-- 
 <form action="" name="formularioGestionHabitaciones" style="display: none">
     <br/>
     <br/>
@@ -95,8 +108,8 @@
     <label>Comentario : </label>
     <input class="datos" type="text" name="" placeholder="Ingrese su comentario aqui">
     <br/>
-    <input type="button" value="Confirmar" onclick="confirmarComentario()">
+    <input type="button" value="Confirmar" onclick="confirmarComentario()"> -->
 
-</form>
+<!-- </form> -->
 </body>
 </html>

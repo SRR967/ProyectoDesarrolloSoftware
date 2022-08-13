@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba</title>
-    <link rel="stylesheet" href="../static/css/SuperAdministrador.css" type="text/css">
-    <script src="../static/js/SuperAdministrador.js"></script>
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css')}}" />
 </head>
+    
 <body>
-<header>
+    
+        <h1>{{ titulo }}</h1>
+        <h5>Bienvenido {{ nombre }} <input type="button" onclick="location.href='/'" value="Cerrar Sesion"/></h5>
+  
+        <input type="button" onclick="location.href='/index_admin/{{id_user}}'" value="Administrar administradores">
+        <button onclick="location.href='/index_superAdmin/{{id_user}}'">Administar super administradores</button>
+        <input type="button" onclick="location.href='/index_user/{{id_user}}'" value="Administrar Usuarios"/>
+        <input type="button" onclick="location.href='/index_habitacion/{{id_user}}'" value="Administrar Habitaciones"/>
 
-    <h1>JW Marriott Marquis Dubai</h1>
+        <hr>
 
-    <button onclick="abrirFormulario1()">Eliminar</button>
-    <button onclick="abrirFormulario2();">Editar</button>
-    <button onclick="abrirFormulario3();">Ingresar</button>
+        {% block content %}
+        {% endblock %}
 
-</header>
+    
+<!-- 
 
+    <form action="" name="form1" style="display: none;">
 
-<form action="" name="form1" style="display: none;">
+    <h2>Formulario Eliminacion</h2>
+    <p>Buscar:
+        <input type="text" name="" id="">
+        <input type="image" src="../static/images/lupa.png" width="20px">
 
+    </p>
+
+    <p> Nombre: <input type="text" name="" id="" disabled>
+        Apellidos: <input type="text" name="" id="" disabled>
+    </p>
     <h2>Formulario Eliminacion</h2>
     <p>Buscar:
          <input type="text" name="">
          <img class="lupa" src="../static/images/lupa.png" width="18px" onclick="buscarAdministrador();">
-         
+
     </p>
 
-    <p> Nombre: <input type="text" name="" disabled> </p>
+    <p> Nombre: <input type="text" name="" disabled></p>
     <p> Apellidos: <input type="text" name="" disabled></p>
 
     <p>Tipo de identificacion:
@@ -55,8 +73,8 @@
     </p>
 
     <p> Nombre: <input type="text"></p>
-    <p>Apellidos: <input type="text" name="" id=""></p> 
-    
+    <p>Apellidos: <input type="text" name="" id=""></p>
+
     <p>Tipo de identificacion:
         <select name="">
             <option value="Cedula de ciudadania">Cedula de ciudadania</option>
@@ -88,7 +106,7 @@
 
 
     <button>Agregar</button>
-</form>
+</form> -->
 
 
 </body>
