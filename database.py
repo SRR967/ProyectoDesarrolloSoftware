@@ -1,5 +1,6 @@
 import sqlite3 
 from sqlite3 import Error
+from werkzeug.security import generate_password_hash, check_password_hash
 
 def sql_connection():
     try:
@@ -129,7 +130,8 @@ def sql_buscar_usuarios(id):
 
 def sql_insert_usuarios(nombre,cedula,correo,telefono,ciudad):
     usuario= "usuario"
-    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena,perfil) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+cedula+"','"+usuario+"');"
+    pwd= generate_password_hash(cedula)
+    strsql="INSERT INTO Usuarios (nombre,cedula,correo,telefono,ciudad,contrasena,perfil) VALUES('"+nombre+"', '"+cedula+"', '"+correo+"', '"+telefono+"', '"+ciudad+"', '"+pwd+"','"+usuario+"');"
     print(strsql)
     con = sql_connection()
     cursor_Obj = con.cursor()
