@@ -21,6 +21,7 @@ function mostrarPanelHoteles() {
     document.panelHoteles.style.display = "block";
 
 }
+
 function mostrarPanelReservaciones() {
     document.panelGaleria.style.display = "none";
     document.formularioGestionHabitaciones.style.display = "none";
