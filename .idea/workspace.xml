@@ -13,6 +13,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -70,6 +73,7 @@
       <workItem from="1659241688339" duration="42000" />
       <workItem from="1660444234976" duration="1480000" />
       <workItem from="1660578206193" duration="4344000" />
+      <workItem from="1660693572672" duration="389000" />
     </task>
     <task id="LOCAL-00001" summary="hash de contraseña agregado">
       <created>1660582603083</created>
