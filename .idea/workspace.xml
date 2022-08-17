@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c25374-9a9e-49f3-8459-b43468cc9c4e" name="Changes" comment="" />
+    <list default="true" id="c5c25374-9a9e-49f3-8459-b43468cc9c4e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +75,7 @@
       <workItem from="1659241688339" duration="42000" />
       <workItem from="1660444234976" duration="1480000" />
       <workItem from="1660578206193" duration="4344000" />
-      <workItem from="1660693572672" duration="389000" />
+      <workItem from="1660693572672" duration="1008000" />
     </task>
     <task id="LOCAL-00001" summary="hash de contraseña agregado">
       <created>1660582603083</created>
