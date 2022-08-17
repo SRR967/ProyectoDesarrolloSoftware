@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 def sql_connection():
     try:
         con = sqlite3.connect('baseDatos.db')
+        print(con)
         return con
     except Error:
         print(Error)
@@ -122,9 +123,10 @@ def sql_select_usuarios():
 
 
 def sql_login_usuarios(user):
-    strsql = "SELECT correo,contrasena,perfil,id FROM Usuarios WHERE correo='" + user + "'"
+    strsql = "SELECT correo,contrasena,perfil,id FROM Usuarios WHERE correo='" + user + "';"
     print(strsql)
     con = sql_connection()
+    print(con)
     cursor_Obj = con.cursor()
     cursor_Obj.execute(strsql)
     usuarios = cursor_Obj.fetchall()
