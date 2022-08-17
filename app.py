@@ -287,4 +287,3 @@ def realizar_reserva(id,id_hab):
         return render_template('reservacion.html',t_reservacion=lista_Habitaciones,titulo="Reservaciones")
 
 
-app.run(debug=True)
